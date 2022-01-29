@@ -8,19 +8,23 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import Input from "../../components/Input/Input";
 import Textarea from "../../components/Input/Textarea";
+import Loader from "../../components/Loader/Loader";
 
 function UserProfile() {
   let { userId } = useParams();
   const [user, setUser] = React.useState<User>();
+  const [isLoading, setLoading] = React.useState(true);
 
   React.useEffect(() => {
     axios
       .get(`https://jsonplaceholder.typicode.com/users/${userId}`)
       .then(({ data }) => {
         setUser(data);
+        setLoading(false);
       })
       .catch((error) => {
         console.error("getUser:", error);
+        setLoading(false);
       });
   }, []); // eslint-disable-line
 
@@ -61,97 +65,101 @@ function UserProfile() {
         <h3>Профиль пользоваетля</h3>
         <Button text="Редактировать" />
       </div>
-      <div className="userProfile__form">
-        <Input
-          type="text"
-          value={formik.values.name}
-          placeholder="Иван Иванов"
-          label="Name"
-          name="name"
-          onChange={(e: any) =>
-            formik.setValues({ ...formik.values, name: e.target.value })
-          }
-        />
-        <Input
-          type="text"
-          value={formik.values.username}
-          placeholder="Ivan"
-          label="User name"
-          name="username"
-          onChange={(e: any) =>
-            formik.setValues({ ...formik.values, username: e.target.value })
-          }
-        />
-        <Input
-          type="text"
-          value={formik.values.email}
-          placeholder="example@mail.com"
-          label="E-mail"
-          name="email"
-          onChange={(e: any) =>
-            formik.setValues({ ...formik.values, email: e.target.value })
-          }
-        />
-        <Input
-          type="text"
-          value={formik.values.street}
-          placeholder="ул. Пример"
-          label="Street"
-          name="street"
-          onChange={(e: any) =>
-            formik.setValues({ ...formik.values, street: e.target.value })
-          }
-        />
-        <Input
-          type="text"
-          value={formik.values.city}
-          placeholder="Москва"
-          label="City"
-          name="city"
-          onChange={(e: any) =>
-            formik.setValues({ ...formik.values, city: e.target.value })
-          }
-        />
-        <Input
-          type="text"
-          value={formik.values.zipcode}
-          placeholder="1234234"
-          label="Zip code"
-          name="zipcode"
-          onChange={(e: any) =>
-            formik.setValues({ ...formik.values, zipcode: e.target.value })
-          }
-        />
-        <Input
-          type="text"
-          value={formik.values.phone}
-          placeholder="89991112233"
-          label="Phone"
-          name="phone"
-          onChange={(e: any) =>
-            formik.setValues({ ...formik.values, phone: e.target.value })
-          }
-        />
-        <Input
-          type="text"
-          value={formik.values.website}
-          placeholder="www.example.com"
-          label="Website"
-          name="website"
-          onChange={(e: any) =>
-            formik.setValues({ ...formik.values, website: e.target.value })
-          }
-        />
-        <Textarea
-          value={formik.values.comment}
-          placeholder="Enter comment"
-          label="Comment"
-          name="comment"
-          onChange={(e: any) =>
-            formik.setValues({ ...formik.values, comment: e.target.value })
-          }
-        />
-      </div>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <div className="userProfile__form">
+          <Input
+            type="text"
+            value={formik.values.name}
+            placeholder="Иван Иванов"
+            label="Name"
+            name="name"
+            onChange={(e: any) =>
+              formik.setValues({ ...formik.values, name: e.target.value })
+            }
+          />
+          <Input
+            type="text"
+            value={formik.values.username}
+            placeholder="Ivan"
+            label="User name"
+            name="username"
+            onChange={(e: any) =>
+              formik.setValues({ ...formik.values, username: e.target.value })
+            }
+          />
+          <Input
+            type="text"
+            value={formik.values.email}
+            placeholder="example@mail.com"
+            label="E-mail"
+            name="email"
+            onChange={(e: any) =>
+              formik.setValues({ ...formik.values, email: e.target.value })
+            }
+          />
+          <Input
+            type="text"
+            value={formik.values.street}
+            placeholder="ул. Пример"
+            label="Street"
+            name="street"
+            onChange={(e: any) =>
+              formik.setValues({ ...formik.values, street: e.target.value })
+            }
+          />
+          <Input
+            type="text"
+            value={formik.values.city}
+            placeholder="Москва"
+            label="City"
+            name="city"
+            onChange={(e: any) =>
+              formik.setValues({ ...formik.values, city: e.target.value })
+            }
+          />
+          <Input
+            type="text"
+            value={formik.values.zipcode}
+            placeholder="1234234"
+            label="Zip code"
+            name="zipcode"
+            onChange={(e: any) =>
+              formik.setValues({ ...formik.values, zipcode: e.target.value })
+            }
+          />
+          <Input
+            type="text"
+            value={formik.values.phone}
+            placeholder="89991112233"
+            label="Phone"
+            name="phone"
+            onChange={(e: any) =>
+              formik.setValues({ ...formik.values, phone: e.target.value })
+            }
+          />
+          <Input
+            type="text"
+            value={formik.values.website}
+            placeholder="www.example.com"
+            label="Website"
+            name="website"
+            onChange={(e: any) =>
+              formik.setValues({ ...formik.values, website: e.target.value })
+            }
+          />
+          <Textarea
+            value={formik.values.comment}
+            placeholder="Enter comment"
+            label="Comment"
+            name="comment"
+            onChange={(e: any) =>
+              formik.setValues({ ...formik.values, comment: e.target.value })
+            }
+          />
+        </div>
+      )}
       <Button
         className="userProfile__submit"
         type="submit"
