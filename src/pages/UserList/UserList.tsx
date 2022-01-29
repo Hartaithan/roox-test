@@ -2,6 +2,7 @@ import "./userList.scss";
 import axios from "axios";
 import React from "react";
 import UserCard from "../../components/UserCard/UserCard";
+import Loader from "../../components/Loader/Loader";
 
 export interface UserGeo {
   lat: string;
@@ -50,14 +51,18 @@ function UserList() {
   return (
     <div className="userList">
       <h3>Список пользователей</h3>
-      {users.map((user) => {
-        return <UserCard key={user.id} user={user} />;
-      })}
-      <p className="userList__count">
-        {users.length === 0
-          ? "Загрузка..."
-          : `Найдено ${users.length} пользователей`}
-      </p>
+      {users.length === 0 ? (
+        <Loader />
+      ) : (
+        <>
+          {users.map((user) => {
+            return <UserCard key={user.id} user={user} />;
+          })}
+          <p className="userList__count">
+            {`Найдено ${users.length} пользователей`}
+          </p>
+        </>
+      )}
     </div>
   );
 }

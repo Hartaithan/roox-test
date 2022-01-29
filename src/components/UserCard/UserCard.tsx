@@ -9,9 +9,9 @@ interface Props {
 }
 
 function UserCard(props: Props) {
-  const { key, user } = props;
+  const { user } = props;
   return (
-    <div className="userCard" key={key}>
+    <div className="userCard">
       <div className="userCard__row">
         <label className="userCard__label">ФИО:</label>
         <p className="userCard__value">{user.name}</p>
