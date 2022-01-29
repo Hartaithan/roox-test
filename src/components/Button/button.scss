@@ -1,0 +1,15 @@
+.button {
+  height: 24px;
+  width: fit-content;
+  background: #4b51ef;
+  border-radius: 5px;
+  padding: 5px 15px;
+  font-size: 12px;
+  line-height: 14px;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  &:not(:last-child) {
+    margin-bottom: 10px;
+  }
+}
