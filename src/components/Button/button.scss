@@ -9,6 +9,9 @@
   color: #ffffff;
   border: none;
   cursor: pointer;
+  &:hover {
+    background: #6267fd;
+  }
   &:not(:last-child) {
     margin-bottom: 10px;
   }
