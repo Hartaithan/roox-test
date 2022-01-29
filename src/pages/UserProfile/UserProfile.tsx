@@ -29,14 +29,14 @@ function UserProfile() {
   }, []); // eslint-disable-line
 
   const validation = yup.object({
-    name: yup.string().required("Required field"),
-    username: yup.string().required("Required field"),
-    email: yup.string().required("Required field"),
-    street: yup.string().required("Required field"),
-    city: yup.string().required("Required field"),
-    zipcode: yup.string().required("Required field"),
-    phone: yup.string().required("Required field"),
-    website: yup.string().required("Required field"),
+    name: yup.string().required("Name field is required"),
+    username: yup.string().required("User name field is required"),
+    email: yup.string().required("E-mail field is required"),
+    street: yup.string().required("Street field is required"),
+    city: yup.string().required("City field is required"),
+    zipcode: yup.string().required("Zip code field is required"),
+    phone: yup.string().required("Phone field is required"),
+    website: yup.string().required("Website field is required"),
     comment: yup.string(),
   });
 
@@ -75,6 +75,7 @@ function UserProfile() {
             placeholder="Иван Иванов"
             label="Name"
             name="name"
+            error={formik.errors.name}
             onChange={(e: any) =>
               formik.setValues({ ...formik.values, name: e.target.value })
             }
@@ -85,6 +86,7 @@ function UserProfile() {
             placeholder="Ivan"
             label="User name"
             name="username"
+            error={formik.errors.username}
             onChange={(e: any) =>
               formik.setValues({ ...formik.values, username: e.target.value })
             }
@@ -95,6 +97,7 @@ function UserProfile() {
             placeholder="example@mail.com"
             label="E-mail"
             name="email"
+            error={formik.errors.email}
             onChange={(e: any) =>
               formik.setValues({ ...formik.values, email: e.target.value })
             }
@@ -105,6 +108,7 @@ function UserProfile() {
             placeholder="ул. Пример"
             label="Street"
             name="street"
+            error={formik.errors.street}
             onChange={(e: any) =>
               formik.setValues({ ...formik.values, street: e.target.value })
             }
@@ -115,6 +119,7 @@ function UserProfile() {
             placeholder="Москва"
             label="City"
             name="city"
+            error={formik.errors.city}
             onChange={(e: any) =>
               formik.setValues({ ...formik.values, city: e.target.value })
             }
@@ -125,6 +130,7 @@ function UserProfile() {
             placeholder="1234234"
             label="Zip code"
             name="zipcode"
+            error={formik.errors.zipcode}
             onChange={(e: any) =>
               formik.setValues({ ...formik.values, zipcode: e.target.value })
             }
@@ -135,6 +141,7 @@ function UserProfile() {
             placeholder="89991112233"
             label="Phone"
             name="phone"
+            error={formik.errors.phone}
             onChange={(e: any) =>
               formik.setValues({ ...formik.values, phone: e.target.value })
             }
@@ -145,6 +152,7 @@ function UserProfile() {
             placeholder="www.example.com"
             label="Website"
             name="website"
+            error={formik.errors.website}
             onChange={(e: any) =>
               formik.setValues({ ...formik.values, website: e.target.value })
             }
@@ -154,6 +162,7 @@ function UserProfile() {
             placeholder="Enter comment"
             label="Comment"
             name="comment"
+            error={formik.errors.comment}
             onChange={(e: any) =>
               formik.setValues({ ...formik.values, comment: e.target.value })
             }
@@ -161,9 +170,14 @@ function UserProfile() {
         </div>
       )}
       <Button
-        className="userProfile__submit"
+        className={
+          formik.isValid
+            ? "userProfile__submit"
+            : "userProfile__submit disabled"
+        }
         type="submit"
         text="Отправить"
+        disabled={formik.isValid ? false : true}
         onClick={() => formik.handleSubmit()}
       />
     </div>

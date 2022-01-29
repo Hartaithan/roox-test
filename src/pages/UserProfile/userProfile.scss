@@ -19,5 +19,9 @@
   &__submit {
     display: block;
     margin-left: auto;
+    background: #52cf4f;
+    &:hover {
+      background: #339232;
+    }
   }
 }

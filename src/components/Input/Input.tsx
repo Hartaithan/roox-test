@@ -7,11 +7,12 @@ interface Props {
   name: string;
   placeholder: string;
   type: string;
+  error: string | undefined;
   onChange: (e: any) => void;
 }
 
 const Input = (props: Props) => {
-  const { value, label, name, placeholder, type, onChange } = props;
+  const { value, label, name, placeholder, type, error, onChange } = props;
   return (
     <div className="form-group">
       {label && <label htmlFor={name}>{label}</label>}
@@ -20,7 +21,7 @@ const Input = (props: Props) => {
         type={type}
         value={value}
         name={name}
-        className="form-control"
+        className={error ? "form-control invalid" : "form-control"}
         placeholder={placeholder}
         onChange={onChange}
       />

@@ -5,19 +5,19 @@ interface Props {
   className?: string;
   type?: "button" | "reset" | "submit" | undefined;
   text: string;
-  form?: string;
+  disabled?: boolean;
   onClick?: () => void;
 }
 
 function Button(props: Props) {
-  const { className, type, text, form, onClick } = props;
+  const { className, type, text, disabled, onClick } = props;
   const variableClass = className ? `button ${className}` : "button";
   return (
     <button
       className={variableClass}
       onClick={onClick}
       type={type || "button"}
-      form={form}
+      disabled={disabled}
     >
       {text}
     </button>

@@ -6,11 +6,12 @@ interface Props {
   label: string;
   name: string;
   placeholder: string;
+  error: string | undefined;
   onChange: (e: any) => void;
 }
 
 const Textarea = (props: Props) => {
-  const { value, label, name, placeholder, onChange } = props;
+  const { value, label, name, placeholder, error, onChange } = props;
   return (
     <div className="form-group">
       {label && <label htmlFor={name}>{label}</label>}
@@ -18,7 +19,7 @@ const Textarea = (props: Props) => {
         id={name}
         value={value}
         name={name}
-        className="form-control"
+        className={error ? "form-control invalid" : "form-control"}
         placeholder={placeholder}
         onChange={onChange}
       />

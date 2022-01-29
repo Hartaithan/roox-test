@@ -15,4 +15,7 @@
   &:not(:last-child) {
     margin-bottom: 10px;
   }
+  &.disabled {
+    background: #5a5a5a !important;
+  }
 }
