@@ -3,39 +3,15 @@ import axios from "axios";
 import React from "react";
 import UserCard from "../../components/UserCard/UserCard";
 import Loader from "../../components/Loader/Loader";
+import { User } from "../../App";
 
-export interface UserGeo {
-  lat: string;
-  lng: string;
+interface Props {
+  users: User[];
+  setUsers: (value: User[]) => void;
 }
 
-export interface UserAddress {
-  street: string;
-  suite: string;
-  city: string;
-  zipcode: string;
-  geo: UserGeo;
-}
-
-export interface UserCompany {
-  name: string;
-  catchPhrase: string;
-  bs: string;
-}
-
-export interface User {
-  id: number;
-  name: string;
-  username: string;
-  email: string;
-  address: UserAddress;
-  phone: string;
-  website: string;
-  company: UserCompany;
-}
-
-function UserList() {
-  const [users, setUsers] = React.useState<User[]>([]);
+function UserList(props: Props) {
+  const { users, setUsers } = props;
 
   React.useEffect(() => {
     axios
@@ -46,7 +22,7 @@ function UserList() {
       .catch((error) => {
         console.error("getUsers:", error);
       });
-  }, []);
+  }, []); // eslint-disable-line
 
   return (
     <div className="userList">

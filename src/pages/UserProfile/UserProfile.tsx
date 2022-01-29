@@ -2,13 +2,13 @@ import "./userProfile.scss";
 import axios from "axios";
 import React from "react";
 import { useParams } from "react-router-dom";
-import { User } from "../UserList/UserList";
 import Button from "../../components/Button/Button";
 import { useFormik } from "formik";
 import * as yup from "yup";
 import Input from "../../components/Input/Input";
 import Textarea from "../../components/Input/Textarea";
 import Loader from "../../components/Loader/Loader";
+import { User } from "../../App";
 
 function UserProfile() {
   let { userId } = useParams();

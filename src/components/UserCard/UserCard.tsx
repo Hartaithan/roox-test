@@ -1,7 +1,7 @@
 import "./userCard.scss";
 import React from "react";
-import { User } from "../../pages/UserList/UserList";
 import { Link } from "react-router-dom";
+import { User } from "../../App";
 
 interface Props {
   key: number;
