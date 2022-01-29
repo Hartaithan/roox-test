@@ -1,0 +1,27 @@
+.form {
+  &-group {
+    display: flex;
+    flex-direction: column;
+    label {
+      font-size: 8px;
+      line-height: 9px;
+      margin-bottom: 3px;
+    }
+    &:not(:last-child) {
+      margin-bottom: 10px;
+    }
+    textarea {
+      width: 100%;
+      min-height: 55px;
+      resize: none;
+    }
+  }
+  &-control {
+    width: 211px;
+    font-size: 10px;
+    line-height: 12px;
+    border: 1px solid #d8d8d8;
+    border-radius: 5px;
+    padding: 5px 10px;
+  }
+}

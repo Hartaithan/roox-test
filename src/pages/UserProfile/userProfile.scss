@@ -1,0 +1,23 @@
+.userProfile {
+  flex-grow: 1;
+  padding: 19px 59px 25px 34px;
+  overflow: auto;
+  &__header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    h3 {
+      margin-bottom: 17px;
+    }
+  }
+  &__form {
+    border: 1px solid #f3f3f3;
+    border-radius: 8px;
+    padding: 20px 12px;
+    margin-bottom: 10px;
+  }
+  &__submit {
+    display: block;
+    margin-left: auto;
+  }
+}

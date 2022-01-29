@@ -6,18 +6,16 @@ interface Props {
   label: string;
   name: string;
   placeholder: string;
-  type: string;
   onChange: (e: any) => void;
 }
 
-const Input = (props: Props) => {
-  const { value, label, name, placeholder, type, onChange } = props;
+const Textarea = (props: Props) => {
+  const { value, label, name, placeholder, onChange } = props;
   return (
     <div className="form-group">
       {label && <label htmlFor={name}>{label}</label>}
-      <input
+      <textarea
         id={name}
-        type={type}
         value={value}
         name={name}
         className="form-control"
@@ -28,4 +26,4 @@ const Input = (props: Props) => {
   );
 };
 
-export default Input;
+export default Textarea;

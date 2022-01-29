@@ -46,7 +46,7 @@ function UserList() {
       .catch((error) => {
         console.error("getUsers:", error);
       });
-  });
+  }, []);
 
   return (
     <div className="userList">

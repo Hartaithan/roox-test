@@ -23,7 +23,7 @@ function UserCard(props: Props) {
       <div className="userCard__row">
         <label className="userCard__label">компания:</label>
         <p className="userCard__value">{user.company.name}</p>
-        <Link className="userCard__link" to="user_profile">
+        <Link className="userCard__link" to={`user/${user.id}`}>
           Подробнее
         </Link>
       </div>

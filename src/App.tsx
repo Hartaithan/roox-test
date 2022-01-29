@@ -10,7 +10,7 @@ function App() {
       <Sidebar />
       <Routes>
         <Route path="/" element={<UserList />} />
-        <Route path="user_profile" element={<UserProfile />} />
+        <Route path="user/:userId" element={<UserProfile />} />
       </Routes>
     </>
   );
