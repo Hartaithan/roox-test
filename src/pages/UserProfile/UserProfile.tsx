@@ -55,7 +55,8 @@ function UserProfile() {
     },
     enableReinitialize: true,
     onSubmit: (values) => {
-      console.info("Form", values);
+      alert(JSON.stringify(values));
+      console.info("Form data:", values);
     },
     validationSchema: validation,
   });
@@ -180,11 +181,7 @@ function UserProfile() {
         </div>
       )}
       <Button
-        className={
-          formik.isValid && isEdit
-            ? "userProfile__submit"
-            : "userProfile__submit disabled"
-        }
+        className="userProfile__submit"
         type="submit"
         text="Отправить"
         disabled={formik.isValid && isEdit ? false : true}
