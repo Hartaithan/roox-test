@@ -13,6 +13,7 @@ import Loader from "../../components/Loader/Loader";
 function UserProfile() {
   let { userId } = useParams();
   const [user, setUser] = React.useState<User>();
+  const [isEdit, setEdit] = React.useState(false);
   const [isLoading, setLoading] = React.useState(true);
 
   React.useEffect(() => {
@@ -63,7 +64,7 @@ function UserProfile() {
     <div className="userProfile">
       <div className="userProfile__header">
         <h3>Профиль пользоваетля</h3>
-        <Button text="Редактировать" />
+        <Button text="Редактировать" onClick={() => setEdit(true)} />
       </div>
       {isLoading ? (
         <Loader />
@@ -76,6 +77,7 @@ function UserProfile() {
             label="Name"
             name="name"
             error={formik.errors.name}
+            readonly={isEdit ? false : true}
             onChange={(e: any) =>
               formik.setValues({ ...formik.values, name: e.target.value })
             }
@@ -87,6 +89,7 @@ function UserProfile() {
             label="User name"
             name="username"
             error={formik.errors.username}
+            readonly={isEdit ? false : true}
             onChange={(e: any) =>
               formik.setValues({ ...formik.values, username: e.target.value })
             }
@@ -98,6 +101,7 @@ function UserProfile() {
             label="E-mail"
             name="email"
             error={formik.errors.email}
+            readonly={isEdit ? false : true}
             onChange={(e: any) =>
               formik.setValues({ ...formik.values, email: e.target.value })
             }
@@ -109,6 +113,7 @@ function UserProfile() {
             label="Street"
             name="street"
             error={formik.errors.street}
+            readonly={isEdit ? false : true}
             onChange={(e: any) =>
               formik.setValues({ ...formik.values, street: e.target.value })
             }
@@ -120,6 +125,7 @@ function UserProfile() {
             label="City"
             name="city"
             error={formik.errors.city}
+            readonly={isEdit ? false : true}
             onChange={(e: any) =>
               formik.setValues({ ...formik.values, city: e.target.value })
             }
@@ -131,6 +137,7 @@ function UserProfile() {
             label="Zip code"
             name="zipcode"
             error={formik.errors.zipcode}
+            readonly={isEdit ? false : true}
             onChange={(e: any) =>
               formik.setValues({ ...formik.values, zipcode: e.target.value })
             }
@@ -142,6 +149,7 @@ function UserProfile() {
             label="Phone"
             name="phone"
             error={formik.errors.phone}
+            readonly={isEdit ? false : true}
             onChange={(e: any) =>
               formik.setValues({ ...formik.values, phone: e.target.value })
             }
@@ -153,6 +161,7 @@ function UserProfile() {
             label="Website"
             name="website"
             error={formik.errors.website}
+            readonly={isEdit ? false : true}
             onChange={(e: any) =>
               formik.setValues({ ...formik.values, website: e.target.value })
             }
@@ -163,6 +172,7 @@ function UserProfile() {
             label="Comment"
             name="comment"
             error={formik.errors.comment}
+            readonly={isEdit ? false : true}
             onChange={(e: any) =>
               formik.setValues({ ...formik.values, comment: e.target.value })
             }
@@ -171,13 +181,13 @@ function UserProfile() {
       )}
       <Button
         className={
-          formik.isValid
+          formik.isValid && isEdit
             ? "userProfile__submit"
             : "userProfile__submit disabled"
         }
         type="submit"
         text="Отправить"
-        disabled={formik.isValid ? false : true}
+        disabled={formik.isValid && isEdit ? false : true}
         onClick={() => formik.handleSubmit()}
       />
     </div>
